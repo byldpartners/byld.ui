@@ -2,6 +2,16 @@
 
 @source "../../../packages/ui/src";
 
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
 @theme {
   /* Colors — generated from packages/ui/src/theme/presets/ */
   --color-background: oklch(1 0 0);
