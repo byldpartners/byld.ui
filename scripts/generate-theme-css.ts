@@ -35,6 +35,8 @@ function generateWebCss(): string {
   const lines = [
     "@import \"tailwindcss\";",
     "",
+    "@source \"../../../packages/ui/src\";",
+    "",
     "@theme {",
     "  /* Colors — generated from packages/ui/src/theme/presets/ */",
     colorsToLines(defaultPreset.tokens.colors, "  "),

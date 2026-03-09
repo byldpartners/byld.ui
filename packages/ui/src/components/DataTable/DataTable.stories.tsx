@@ -59,14 +59,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    columns,
+    columns: columns as ColumnDef<unknown>[],
     data,
   },
 };
 
 export const Empty: Story = {
   args: {
-    columns,
+    columns: columns as ColumnDef<unknown>[],
     data: [],
   },
 };

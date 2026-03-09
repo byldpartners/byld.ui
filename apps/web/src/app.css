@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source "../../../packages/ui/src";
+
 @theme {
   /* Colors — generated from packages/ui/src/theme/presets/ */
   --color-background: oklch(1 0 0);

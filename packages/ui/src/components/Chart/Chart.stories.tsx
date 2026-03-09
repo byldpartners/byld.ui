@@ -30,6 +30,7 @@ const sampleConfig: ChartConfig = {
 };
 
 export const Default: Story = {
+  args: { config: sampleConfig },
   render: () => (
     <Chart config={sampleConfig} style={{ width: 400, height: 250 }}>
       <div className="flex h-full flex-col items-center justify-center gap-4">

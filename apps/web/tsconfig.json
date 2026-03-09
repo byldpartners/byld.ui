@@ -11,5 +11,5 @@
     "noEmit": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
-  "include": ["src", "../../packages/ui/src/**/*.web.tsx", "../../packages/ui/src/**/*.types.ts"]
+  "include": ["src", "../../packages/ui/src/**/*.web.tsx", "../../packages/ui/src/**/*.stories.tsx", "../../packages/ui/src/**/*.types.ts"]
 }

@@ -21,13 +21,13 @@ export const Default: Story = {
   render: () => (
     <div style={{ width: 500, height: 200 }} className="rounded-lg border">
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={1}>
+        <ResizablePanel defaultSize={50}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Panel One</span>
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={1}>
+        <ResizablePanel defaultSize={50}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Panel Two</span>
           </div>
@@ -41,13 +41,13 @@ export const Vertical: Story = {
   render: () => (
     <div style={{ width: 500, height: 300 }} className="rounded-lg border">
       <ResizablePanelGroup direction="vertical">
-        <ResizablePanel defaultSize={1}>
+        <ResizablePanel defaultSize={50}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Top Panel</span>
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={1}>
+        <ResizablePanel defaultSize={50}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Bottom Panel</span>
           </div>
@@ -61,19 +61,19 @@ export const ThreePanels: Story = {
   render: () => (
     <div style={{ width: 500, height: 200 }} className="rounded-lg border">
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={1}>
+        <ResizablePanel defaultSize={25}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Left</span>
           </div>
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={2}>
+        <ResizablePanel defaultSize={50}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Center</span>
           </div>
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={1}>
+        <ResizablePanel defaultSize={25}>
           <div className="flex h-full items-center justify-center p-6">
             <span className="font-semibold">Right</span>
           </div>
