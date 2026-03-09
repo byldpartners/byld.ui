@@ -31,3 +31,13 @@
   --radius-xl: 0.75rem;
   --radius-full: 9999px;
 }
+
+/*
+ * Override Tailwind's default border-color (currentColor) so bare
+ * border utilities like border-b use the theme's --color-border token.
+ */
+@layer base {
+  *, *::before, *::after {
+    border-color: var(--color-border);
+  }
+}

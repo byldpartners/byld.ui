@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, createElement } from "react";
-import type { ThemePreset, ThemeTokens, ThemeColors, ThemeRadius, ThemeSpacing } from "./theme.types";
+import type { ThemePreset, ThemeTokens, ThemeColors, ThemeRadius, ThemeSpacing, ThemeShadow } from "./theme.types";
 import { defaultPreset } from "./presets/default";
 import { darkPreset } from "./presets/dark";
 import { auroraPreset } from "./presets/aurora";
@@ -36,10 +36,25 @@ function generateCssVars(tokens: ThemeTokens): Record<string, string> {
   vars["--font-family"] = tokens.typography.fontFamily;
   vars["--font-family-mono"] = tokens.typography.fontFamilyMono;
 
+  if (tokens.shadow) {
+    for (const [key, value] of Object.entries(tokens.shadow)) {
+      vars[`--shadow-${key}`] = value;
+    }
+  }
+
   return vars;
 }
 
+// Shadow CSS var keys that may have been set by a previous theme and need clearing
+const SHADOW_KEYS = ["--shadow-sm", "--shadow-md", "--shadow-lg", "--shadow-xl"];
+
 function applyCssVars(vars: Record<string, string>, element: HTMLElement = document.documentElement) {
+  // Clear shadow overrides that may have been set by a previous theme
+  for (const key of SHADOW_KEYS) {
+    if (!(key in vars)) {
+      element.style.removeProperty(key);
+    }
+  }
   for (const [key, value] of Object.entries(vars)) {
     element.style.setProperty(key, value);
   }
@@ -105,4 +120,4 @@ export function ThemeProvider({
 }
 
 export { defaultPreset, darkPreset, auroraPreset };
-export type { ThemePreset, ThemeTokens, ThemeColors, ThemeRadius, ThemeSpacing };
+export type { ThemePreset, ThemeTokens, ThemeColors, ThemeRadius, ThemeSpacing, ThemeShadow };

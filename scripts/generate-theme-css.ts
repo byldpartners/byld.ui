@@ -47,6 +47,16 @@ function generateWebCss(): string {
     ),
     "}",
     "",
+    "/*",
+    " * Override Tailwind's default border-color (currentColor) so bare",
+    " * border utilities like border-b use the theme's --color-border token.",
+    " */",
+    "@layer base {",
+    "  *, *::before, *::after {",
+    "    border-color: var(--color-border);",
+    "  }",
+    "}",
+    "",
   ];
 
   return lines.join("\n");

@@ -16,12 +16,12 @@ export const auroraPreset: ThemePreset = {
       secondaryForeground: "oklch(0.90 0.03 290)",
       muted: "oklch(0.28 0.04 270)",
       mutedForeground: "oklch(0.65 0.04 260)",
-      accent: "oklch(0.80 0.16 80)",
-      accentForeground: "oklch(0.20 0.04 60)",
+      accent: "oklch(0.30 0.05 270)",
+      accentForeground: "oklch(0.93 0.01 250)",
       destructive: "oklch(0.65 0.22 15)",
       destructiveForeground: "oklch(0.95 0.01 15)",
-      border: "oklch(0.32 0.05 270)",
-      input: "oklch(0.32 0.05 270)",
+      border: "oklch(0.26 0.035 270)",
+      input: "oklch(0.26 0.035 270)",
       ring: "oklch(0.65 0.12 190)",
     },
     radius: {
@@ -45,6 +45,12 @@ export const auroraPreset: ThemePreset = {
         'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
       fontFamilyMono:
         'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
+    },
+    shadow: {
+      sm: "0 1px 3px 0 oklch(0.55 0.12 190 / 0.3), 0 1px 2px -1px oklch(0.55 0.12 190 / 0.2)",
+      md: "0 4px 8px -1px oklch(0.55 0.12 190 / 0.35), 0 2px 4px -2px oklch(0.55 0.12 190 / 0.25)",
+      lg: "0 10px 20px -3px oklch(0.55 0.12 190 / 0.4), 0 4px 8px -4px oklch(0.55 0.12 190 / 0.3)",
+      xl: "0 20px 30px -5px oklch(0.55 0.12 190 / 0.45), 0 8px 12px -6px oklch(0.55 0.12 190 / 0.35)",
     },
   },
 };

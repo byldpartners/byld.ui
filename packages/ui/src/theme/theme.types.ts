@@ -43,11 +43,19 @@ export interface ThemeTypography {
   fontFamilyMono: string;
 }
 
+export interface ThemeShadow {
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+}
+
 export interface ThemeTokens {
   colors: ThemeColors;
   radius: ThemeRadius;
   spacing: ThemeSpacing;
   typography: ThemeTypography;
+  shadow?: ThemeShadow;
 }
 
 export interface ThemePreset {

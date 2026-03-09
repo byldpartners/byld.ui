@@ -135,18 +135,14 @@ function DropdownMenuItem({
         onOpenChange(false);
       }}
     >
-      {typeof children === "string" ? (
-        <Text
-          className={cn(
-            "text-sm text-popover-foreground",
-            disabled && "text-muted-foreground",
-          )}
-        >
-          {children}
-        </Text>
-      ) : (
-        children
-      )}
+      <Text
+        className={cn(
+          "text-sm text-popover-foreground",
+          disabled && "text-muted-foreground",
+        )}
+      >
+        {children}
+      </Text>
     </Pressable>
   );
 }
@@ -209,11 +205,7 @@ function DropdownMenuCheckboxItem({
       <View className="absolute left-3 w-4 h-4 justify-center items-center">
         {checked && <Text className="text-xs text-popover-foreground">✓</Text>}
       </View>
-      {typeof children === "string" ? (
-        <Text className="text-sm text-popover-foreground">{children}</Text>
-      ) : (
-        children
-      )}
+      <Text className="text-sm text-popover-foreground">{children}</Text>
     </Pressable>
   );
 }
@@ -245,11 +237,7 @@ function DropdownMenuRadioItem({
       <View className="absolute left-3 w-4 h-4 justify-center items-center">
         <View className="w-1.5 h-1.5 rounded-full bg-popover-foreground" />
       </View>
-      {typeof children === "string" ? (
-        <Text className="text-sm text-popover-foreground">{children}</Text>
-      ) : (
-        children
-      )}
+      <Text className="text-sm text-popover-foreground">{children}</Text>
     </View>
   );
 }
@@ -272,11 +260,7 @@ function DropdownMenuSubTrigger({ children, className }: DropdownMenuSubTriggerN
         className,
       )}
     >
-      {typeof children === "string" ? (
-        <Text className="text-sm text-popover-foreground">{children}</Text>
-      ) : (
-        children
-      )}
+      <Text className="text-sm text-popover-foreground">{children}</Text>
       <Text className="ml-auto text-base text-muted-foreground">›</Text>
     </View>
   );

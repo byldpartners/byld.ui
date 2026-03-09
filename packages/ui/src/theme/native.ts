@@ -111,6 +111,11 @@ function tokensToCssVars(tokens: ThemeTokens): Record<string, string | number> {
   }
   vars["--font-family"] = tokens.typography.fontFamily;
   vars["--font-family-mono"] = tokens.typography.fontFamilyMono;
+  if (tokens.shadow) {
+    for (const [key, value] of Object.entries(tokens.shadow)) {
+      vars[`--shadow-${key}`] = value;
+    }
+  }
   return vars;
 }
 
