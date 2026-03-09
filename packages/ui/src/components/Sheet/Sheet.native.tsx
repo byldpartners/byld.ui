@@ -13,10 +13,10 @@ import {
   Pressable,
   Animated,
   Dimensions,
-  StyleSheet,
   type ViewProps,
   type TextProps,
 } from "react-native";
+import { cn } from "../../utils/cn";
 import type { SheetSide } from "./Sheet.types";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -70,14 +70,14 @@ SheetTrigger.displayName = "SheetTrigger";
 function getSlideConfig(side: SheetSide) {
   switch (side) {
     case "top":
-      return { axis: "translateY" as const, from: -SCREEN_HEIGHT, contentStyle: styles.contentTop };
+      return { axis: "translateY" as const, from: -SCREEN_HEIGHT, contentClassName: "top-0 left-0 right-0" };
     case "bottom":
-      return { axis: "translateY" as const, from: SCREEN_HEIGHT, contentStyle: styles.contentBottom };
+      return { axis: "translateY" as const, from: SCREEN_HEIGHT, contentClassName: "bottom-0 left-0 right-0" };
     case "left":
-      return { axis: "translateX" as const, from: -SCREEN_WIDTH, contentStyle: styles.contentLeft };
+      return { axis: "translateX" as const, from: -SCREEN_WIDTH, contentClassName: "top-0 left-0 bottom-0 w-3/4 max-w-[400px]" };
     case "right":
     default:
-      return { axis: "translateX" as const, from: SCREEN_WIDTH, contentStyle: styles.contentRight };
+      return { axis: "translateX" as const, from: SCREEN_WIDTH, contentClassName: "top-0 right-0 bottom-0 w-3/4 max-w-[400px]" };
   }
 }
 
@@ -123,9 +123,8 @@ function SheetContent({
         onPress={() => onOpenChange(false)}
       >
         <Animated.View
-          className="absolute bg-background shadow-lg elevation-5"
+          className={cn("absolute bg-background shadow-lg elevation-5", config.contentClassName)}
           style={[
-            config.contentStyle,
             style,
             { transform: config.axis === "translateX" ? [{ translateX: animValue }] : [{ translateY: animValue }] },
           ]}
@@ -204,33 +203,6 @@ function SheetClose({ children, onPress }: { children?: ReactNode; onPress?: () 
   );
 }
 SheetClose.displayName = "SheetClose";
-
-const styles = StyleSheet.create({
-  contentRight: {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    width: "75%",
-    maxWidth: 400,
-  },
-  contentLeft: {
-    top: 0,
-    left: 0,
-    bottom: 0,
-    width: "75%",
-    maxWidth: 400,
-  },
-  contentTop: {
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-  contentBottom: {
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-});
 
 export {
   Sheet,

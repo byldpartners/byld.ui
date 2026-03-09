@@ -9,7 +9,6 @@ import {
   Modal,
   Pressable,
   ScrollView,
-  StyleSheet,
   type ViewProps,
 } from "react-native";
 import { cn } from "../../utils/cn";
@@ -53,10 +52,9 @@ function Menubar({ children, className }: MenubarNativeProps) {
   return (
     <View
       className={cn(
-        "flex-row items-center border border-border rounded-md bg-background p-1 gap-1",
+        "flex-row items-center border-[0.5px] border-border rounded-md bg-background p-1 gap-1",
         className,
       )}
-      style={{ borderWidth: StyleSheet.hairlineWidth }}
     >
       {children}
     </View>
@@ -181,8 +179,7 @@ interface MenubarSeparatorNativeProps extends MenubarSeparatorProps {
 function MenubarSeparator({ className }: MenubarSeparatorNativeProps) {
   return (
     <View
-      className={cn("bg-border my-1 -mx-1", className)}
-      style={{ height: StyleSheet.hairlineWidth }}
+      className={cn("bg-border my-1 -mx-1 h-[0.5px]", className)}
     />
   );
 }

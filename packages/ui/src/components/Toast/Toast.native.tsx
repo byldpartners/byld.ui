@@ -10,7 +10,6 @@ import {
   Text,
   Pressable,
   Animated,
-  StyleSheet,
   type ViewProps,
   type TextProps,
 } from "react-native";
@@ -153,11 +152,10 @@ function ToastItem({ toast: t, onDismiss }: { toast: ToasterToast; onDismiss: ()
   return (
     <Animated.View
       className={cn(
-        "flex-row items-center justify-between bg-background rounded-lg border-border p-4 shadow-lg elevation-5",
+        "flex-row items-center justify-between bg-background rounded-lg border-[0.5px] border-border p-4 shadow-lg elevation-5",
         isDestructive && "bg-destructive border-destructive",
       )}
       style={[
-        { borderWidth: StyleSheet.hairlineWidth },
         { transform: [{ translateY }], opacity },
       ]}
     >
@@ -186,8 +184,7 @@ function ToastItem({ toast: t, onDismiss }: { toast: ToasterToast; onDismiss: ()
       <View className="flex-row items-center gap-1">
         {t.action && (
           <Pressable
-            className="px-3 py-1.5 rounded-sm border-border"
-            style={{ borderWidth: StyleSheet.hairlineWidth }}
+            className="px-3 py-1.5 rounded-sm border-[0.5px] border-border"
             onPress={t.action.onPress}
           >
             <Text className="text-xs font-medium text-foreground">

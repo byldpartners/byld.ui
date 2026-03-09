@@ -10,7 +10,6 @@ import {
   Modal,
   Pressable,
   ScrollView,
-  StyleSheet,
   type ViewProps,
   type TextProps,
 } from "react-native";
@@ -55,15 +54,6 @@ function DropdownMenu({
     </DropdownMenuContext.Provider>
   );
 }
-const dropdownStyles = StyleSheet.create({
-  content: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-});
 
 DropdownMenu.displayName = "DropdownMenu";
 
@@ -109,10 +99,9 @@ function DropdownMenuContent({ children, className }: DropdownMenuContentNativeP
       >
         <View
           className={cn(
-            "bg-popover rounded-lg p-1 min-w-[200px] max-w-[280px] max-h-[400px]",
+            "bg-popover rounded-lg p-1 min-w-[200px] max-w-[280px] max-h-[400px] shadow-lg elevation-5",
             className,
           )}
-          style={dropdownStyles.content}
         >
           <ScrollView bounces={false}>{children}</ScrollView>
         </View>
@@ -170,8 +159,7 @@ interface DropdownMenuSeparatorNativeProps extends DropdownMenuSeparatorProps {
 function DropdownMenuSeparator({ className }: DropdownMenuSeparatorNativeProps) {
   return (
     <View
-      className={cn("bg-border my-1 -mx-1", className)}
-      style={{ height: StyleSheet.hairlineWidth }}
+      className={cn("bg-border my-1 -mx-1 h-[0.5px]", className)}
     />
   );
 }

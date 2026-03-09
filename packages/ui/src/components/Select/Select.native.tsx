@@ -4,7 +4,6 @@ import {
   Text,
   Pressable,
   Modal,
-  StyleSheet,
   type ViewProps,
 } from "react-native";
 import type { SelectProps } from "./Select.types";
@@ -118,8 +117,7 @@ function SelectContent({ children }: SelectContentNativeProps) {
       >
         <Pressable
           onPress={(e) => e.stopPropagation()}
-          className="bg-popover rounded-lg p-1 min-w-[200px] max-h-[300px]"
-          style={selectStyles.content}
+          className="bg-popover rounded-lg p-1 min-w-[200px] max-h-[300px] shadow-lg elevation-5"
         >
           {children}
         </Pressable>
@@ -183,16 +181,6 @@ function SelectSeparator() {
     <View className="h-px bg-border my-1 -mx-1" />
   );
 }
-
-const selectStyles = StyleSheet.create({
-  content: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-});
 
 Select.displayName = "Select";
 SelectTrigger.displayName = "SelectTrigger";
