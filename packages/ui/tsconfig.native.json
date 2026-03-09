@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "lib": ["ES2022"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.native.ts",
+    "src/**/*.native.tsx",
+    "src/**/*.types.ts",
+    "src/utils/cn.native.ts",
+    "src/theme/native.ts",
+    "src/theme/tokens.ts",
+    "src/theme/theme.types.ts",
+    "src/uniwind.d.ts"
+  ]
+}
