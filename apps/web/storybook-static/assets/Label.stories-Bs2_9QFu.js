@@ -1,5 +1,0 @@
-import{j as p}from"./jsx-runtime-D_zvdyIk.js";import{r as d}from"./index-JhL3uwfD.js";import{R as s}from"./index-Cl4xeA4t.js";import{c}from"./index-DgkKfON_.js";import{c as l}from"./cn-BmGQd4RS.js";import"./index-CcsgAk74.js";import"./index-BPftEo5x.js";import"./index-hLVmTiZX.js";import"./index-CA2oR2yp.js";import"./index-CB6uX4vz.js";import"./bundle-mjs-Ce1ZTWB2.js";const f=c("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"),r=d.forwardRef(({className:m,...i},n)=>p.jsx(s,{ref:n,className:l(f(),m),...i}));r.displayName=s.displayName;r.__docgenInfo={description:"",methods:[]};const w={title:"Components/Label",component:r,parameters:{layout:"centered"},tags:["autodocs"]},e={args:{children:"Email address"}};var o,a,t;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  args: {
-    children: "Email address"
-  }
-}`,...(t=(a=e.parameters)==null?void 0:a.docs)==null?void 0:t.source}}};const D=["Default"];export{e as Default,D as __namedExportsOrder,w as default};
