@@ -1,2 +1,2 @@
-export { Separator } from "./Separator.web";
-export type { SeparatorProps, SeparatorOrientation } from "./Separator.types";
+export * from "./Separator.web";
+export type * from "./Separator.types";

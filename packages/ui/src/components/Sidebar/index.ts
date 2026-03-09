@@ -1,2 +1,2 @@
-export { Sidebar } from "./Sidebar.web";
-export type { SidebarProps } from "./Sidebar.types";
+export * from "./Sidebar.web";
+export type * from "./Sidebar.types";

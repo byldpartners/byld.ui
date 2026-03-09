@@ -1,2 +1,2 @@
-export { AspectRatio } from "./AspectRatio.web";
-export type { AspectRatioProps } from "./AspectRatio.types";
+export * from "./AspectRatio.web";
+export type * from "./AspectRatio.types";

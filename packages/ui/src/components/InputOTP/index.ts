@@ -1,2 +1,2 @@
-export { InputOTP } from "./InputOTP.web";
-export type { InputOTPProps } from "./InputOTP.types";
+export * from "./InputOTP.web";
+export type * from "./InputOTP.types";

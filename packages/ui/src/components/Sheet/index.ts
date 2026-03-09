@@ -1,2 +1,2 @@
-export { Sheet } from "./Sheet.web";
-export type { SheetProps } from "./Sheet.types";
+export * from "./Sheet.web";
+export type * from "./Sheet.types";

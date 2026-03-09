@@ -1,2 +1,2 @@
-export { Tooltip } from "./Tooltip.web";
-export type { TooltipProps } from "./Tooltip.types";
+export * from "./Tooltip.web";
+export type * from "./Tooltip.types";

@@ -1,2 +1,2 @@
-export { Switch } from "./Switch.web";
-export type { SwitchProps } from "./Switch.types";
+export * from "./Switch.web";
+export type * from "./Switch.types";

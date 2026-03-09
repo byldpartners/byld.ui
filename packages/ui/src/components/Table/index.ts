@@ -1,2 +1,2 @@
-export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from "./Table.web";
-export type { TableProps, TableHeaderProps, TableBodyProps, TableFooterProps, TableRowProps, TableHeadProps, TableCellProps, TableCaptionProps } from "./Table.types";
+export * from "./Table.web";
+export type * from "./Table.types";

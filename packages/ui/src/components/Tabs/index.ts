@@ -1,2 +1,2 @@
-export { Tabs, TabsList, TabsTrigger, TabsContent } from "./Tabs.web";
-export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps } from "./Tabs.types";
+export * from "./Tabs.web";
+export type * from "./Tabs.types";

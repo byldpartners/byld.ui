@@ -1,2 +1,2 @@
-export { NavigationMenu } from "./NavigationMenu.web";
-export type { NavigationMenuProps } from "./NavigationMenu.types";
+export * from "./NavigationMenu.web";
+export type * from "./NavigationMenu.types";

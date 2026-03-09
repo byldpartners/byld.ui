@@ -1,2 +1,2 @@
-export { DropdownMenu } from "./DropdownMenu.web";
-export type { DropdownMenuProps } from "./DropdownMenu.types";
+export * from "./DropdownMenu.web";
+export type * from "./DropdownMenu.types";

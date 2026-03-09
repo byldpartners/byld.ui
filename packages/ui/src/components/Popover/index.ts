@@ -1,2 +1,2 @@
-export { Popover } from "./Popover.web";
-export type { PopoverProps } from "./Popover.types";
+export * from "./Popover.web";
+export type * from "./Popover.types";

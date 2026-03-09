@@ -1,2 +1,2 @@
-export { Textarea } from "./Textarea.web";
-export type { TextareaProps } from "./Textarea.types";
+export * from "./Textarea.web";
+export type * from "./Textarea.types";

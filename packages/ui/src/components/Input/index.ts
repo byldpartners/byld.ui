@@ -1,2 +1,2 @@
-export { Input } from "./Input.web";
-export type { InputProps } from "./Input.types";
+export * from "./Input.web";
+export type * from "./Input.types";

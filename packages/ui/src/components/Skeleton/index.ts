@@ -1,2 +1,2 @@
-export { Skeleton } from "./Skeleton.web";
-export type { SkeletonProps } from "./Skeleton.types";
+export * from "./Skeleton.web";
+export type * from "./Skeleton.types";

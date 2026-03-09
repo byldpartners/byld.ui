@@ -1,2 +1,2 @@
-export { ContextMenu } from "./ContextMenu.web";
-export type { ContextMenuProps } from "./ContextMenu.types";
+export * from "./ContextMenu.web";
+export type * from "./ContextMenu.types";
