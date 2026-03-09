@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors – defaults from the light preset; ThemeProvider overrides at runtime */
+  /* Colors — generated from packages/ui/src/theme/presets/ */
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.145 0 0);
   --color-card: oklch(1 0 0);
@@ -17,7 +17,7 @@
   --color-accent: oklch(0.965 0 0);
   --color-accent-foreground: oklch(0.205 0 0);
   --color-destructive: oklch(0.577 0.245 27.325);
-  --color-destructive-foreground: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.985 0 0);
   --color-border: oklch(0.922 0 0);
   --color-input: oklch(0.922 0 0);
   --color-ring: oklch(0.708 0 0);

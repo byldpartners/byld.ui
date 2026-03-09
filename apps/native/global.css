@@ -3,6 +3,8 @@
 
 @source "../../packages/ui/src";
 
+/* Theme colors — generated from packages/ui/src/theme/presets/ */
+
 @variant light {
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.145 0 0);
