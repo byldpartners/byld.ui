@@ -106,6 +106,9 @@ import {
   Toggle,
   ToggleGroup,
   ToggleGroupItem,
+  toast,
+  ToastProvider,
+  ToastViewport,
   ThemeProvider,
   useTheme,
 } from "@byldpartners/ui";
@@ -166,6 +169,7 @@ function AppContent() {
       <View className="flex-1 bg-background">
       <SafeAreaView className="flex-1">
         <StatusBar style={theme === "default" ? "dark" : "light"} />
+        <ToastProvider>
         <ScrollView contentContainerClassName="p-6 gap-8 pb-24">
           <View className="flex-row items-center justify-between">
             <Text className="text-2xl font-bold text-foreground">
@@ -725,6 +729,37 @@ function AppContent() {
 
           <Separator />
 
+          {/* ── Toast ── */}
+          <Section title="Toast">
+            <View className="gap-2">
+              <Button
+                variant="default"
+                onPress={() =>
+                  toast({
+                    title: "Success",
+                    description: "Your changes were saved.",
+                  })
+                }
+              >
+                Show Toast
+              </Button>
+              <Button
+                variant="destructive"
+                onPress={() =>
+                  toast({
+                    title: "Error",
+                    description: "Something went wrong.",
+                    variant: "destructive",
+                  })
+                }
+              >
+                Destructive Toast
+              </Button>
+            </View>
+          </Section>
+
+          <Separator />
+
           {/* ── ScrollArea ── */}
           <Section title="ScrollArea">
             <View className="h-24 border border-border rounded-md">
@@ -738,6 +773,8 @@ function AppContent() {
             </View>
           </Section>
         </ScrollView>
+        <ToastViewport />
+        </ToastProvider>
       </SafeAreaView>
       </View>
     </SafeAreaProvider>

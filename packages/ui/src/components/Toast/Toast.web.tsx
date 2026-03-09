@@ -1,4 +1,4 @@
-import { forwardRef, useState, useEffect, useCallback, type ReactNode } from "react";
+import { forwardRef, useState, useEffect, type ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 
@@ -10,8 +10,11 @@ function XIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const toastKeyframes = `@keyframes byld-toast-slide-in{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}`;
+let toastStyleInjected = false;
+
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-6 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
+  "group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-6 shadow-lg [animation:byld-toast-slide-in_0.3s_ease-out]",
   {
     variants: {
       variant: {
@@ -36,16 +39,26 @@ ToastProvider.displayName = "ToastProvider";
 const ToastViewport = forwardRef<
   HTMLOListElement,
   React.HTMLAttributes<HTMLOListElement>
->(({ className, ...props }, ref) => (
-  <ol
-    ref={ref}
-    className={cn(
-      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
-      className,
-    )}
-    {...props}
-  />
-));
+>(({ className, ...props }, ref) => {
+  useEffect(() => {
+    if (toastStyleInjected) return;
+    toastStyleInjected = true;
+    const style = document.createElement("style");
+    style.textContent = toastKeyframes;
+    document.head.appendChild(style);
+  }, []);
+
+  return (
+    <ol
+      ref={ref}
+      className={cn(
+        "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+        className,
+      )}
+      {...props}
+    />
+  );
+});
 ToastViewport.displayName = "ToastViewport";
 
 interface ToastWebProps
@@ -146,7 +159,7 @@ type ToastAction =
   | { type: "REMOVE_TOAST"; toastId?: string };
 
 const TOAST_LIMIT = 1;
-const TOAST_REMOVE_DELAY = 1000000;
+const TOAST_REMOVE_DELAY = 5000;
 
 let count = 0;
 function genId() {
@@ -225,6 +238,11 @@ function toast({
       },
     },
   });
+
+  // Auto-dismiss after delay
+  setTimeout(() => {
+    dismiss();
+  }, TOAST_REMOVE_DELAY);
 
   return { id, dismiss, update };
 }
