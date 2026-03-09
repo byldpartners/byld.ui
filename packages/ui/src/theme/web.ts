@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState, createElement } from "r
 import type { ThemePreset, ThemeTokens, ThemeColors, ThemeRadius, ThemeSpacing } from "./theme.types";
 import { defaultPreset } from "./presets/default";
 import { darkPreset } from "./presets/dark";
+import { auroraPreset } from "./presets/aurora";
 
 // --- CSS Variable Generation ---
 
@@ -75,7 +76,7 @@ export function ThemeProvider({
   defaultTheme = "default",
   presets: customPresets,
 }: ThemeProviderProps) {
-  const presets = customPresets ?? [defaultPreset, darkPreset];
+  const presets = customPresets ?? [defaultPreset, darkPreset, auroraPreset];
   const presetMap = new Map(presets.map((p) => [p.name, p]));
 
   const [themeName, setThemeName] = useState(defaultTheme);
@@ -103,5 +104,5 @@ export function ThemeProvider({
   );
 }
 
-export { defaultPreset, darkPreset };
+export { defaultPreset, darkPreset, auroraPreset };
 export type { ThemePreset, ThemeTokens, ThemeColors, ThemeRadius, ThemeSpacing };

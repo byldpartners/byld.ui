@@ -175,6 +175,13 @@ function ThemeSwitcher() {
       >
         Dark
       </Button>
+      <Button
+        variant={theme === "aurora" ? "default" : "outline"}
+        size="sm"
+        onClick={() => setTheme("aurora")}
+      >
+        Aurora
+      </Button>
     </div>
   );
 }

@@ -125,13 +125,19 @@ function SectionLabel({ children }: { children: string }) {
 
 function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
+  const order = ["default", "dark", "aurora"] as const;
+  const labels: Record<string, string> = { default: "Light", dark: "Dark", aurora: "Aurora" };
   return (
     <Button
       variant="outline"
       size="sm"
-      onPress={() => setTheme(theme === "default" ? "dark" : "default")}
+      onPress={() => {
+        const i = order.indexOf(theme as (typeof order)[number]);
+        const next = order[(i + 1) % order.length];
+        setTheme(next);
+      }}
     >
-      {theme === "default" ? "Dark" : "Light"}
+      {labels[theme] ?? "Light"}
     </Button>
   );
 }
@@ -159,7 +165,7 @@ function AppContent() {
     <SafeAreaProvider>
       <View className="flex-1 bg-background">
       <SafeAreaView className="flex-1">
-        <StatusBar style={theme === "dark" ? "light" : "dark"} />
+        <StatusBar style={theme === "default" ? "dark" : "light"} />
         <ScrollView contentContainerClassName="p-6 gap-8 pb-24">
           <View className="flex-row items-center justify-between">
             <Text className="text-2xl font-bold text-foreground">

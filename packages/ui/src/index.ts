@@ -2,7 +2,7 @@
 export * from "./components";
 
 // Theme
-export { ThemeProvider, useTheme, defaultPreset, darkPreset } from "./theme/web";
+export { ThemeProvider, useTheme, defaultPreset, darkPreset, auroraPreset } from "./theme/web";
 export type {
   ThemePreset,
   ThemeTokens,

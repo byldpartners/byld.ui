@@ -61,7 +61,7 @@ function generateNativeCss(): string {
     "",
     "@source \"../../packages/ui/src\";",
     "",
-    "/* Theme colors — generated from packages/ui/src/theme/presets/ */",
+    "/* Theme tokens — generated from packages/ui/src/theme/presets/ */",
     "",
     "@variant light {",
     colorsToLines(defaultPreset.tokens.colors, "  "),
