@@ -187,7 +187,7 @@ function AccordionTrigger({
       )}
     >
       {typeof children === "string" ? (
-        <Text className="text-sm font-medium flex-1">{children}</Text>
+        <Text className="text-sm font-medium text-foreground flex-1">{children}</Text>
       ) : (
         <View className="flex-1">{children}</View>
       )}

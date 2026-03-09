@@ -106,6 +106,8 @@ import {
   Toggle,
   ToggleGroup,
   ToggleGroupItem,
+  ThemeProvider,
+  useTheme,
 } from "@byldpartners/ui";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -121,7 +123,29 @@ function SectionLabel({ children }: { children: string }) {
   return <Text className="text-sm text-muted-foreground">{children}</Text>;
 }
 
+function ThemeSwitcher() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onPress={() => setTheme(theme === "default" ? "dark" : "default")}
+    >
+      {theme === "default" ? "Dark" : "Light"}
+    </Button>
+  );
+}
+
 export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}
+
+function AppContent() {
+  const { theme } = useTheme();
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [switchOn, setSwitchOn] = useState(false);
   const [radioValue, setRadioValue] = useState("option-1");
@@ -133,12 +157,16 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex-1 bg-background">
-        <StatusBar style="auto" />
+      <View className="flex-1 bg-background">
+      <SafeAreaView className="flex-1">
+        <StatusBar style={theme === "dark" ? "light" : "dark"} />
         <ScrollView contentContainerClassName="p-6 gap-8 pb-24">
-          <Text className="text-2xl font-bold text-foreground">
-            @byldpartners/ui
-          </Text>
+          <View className="flex-row items-center justify-between">
+            <Text className="text-2xl font-bold text-foreground">
+              @byldpartners/ui
+            </Text>
+            <ThemeSwitcher />
+          </View>
 
           {/* ── Button ── */}
           <Section title="Button">
@@ -321,8 +349,8 @@ export default function App() {
           {/* ── Toggle ── */}
           <Section title="Toggle">
             <View className="flex-row gap-2">
-              <Toggle variant="default"><Text>B</Text></Toggle>
-              <Toggle variant="outline"><Text>I</Text></Toggle>
+              <Toggle variant="default"><Text className="text-foreground">B</Text></Toggle>
+              <Toggle variant="outline"><Text className="text-foreground">I</Text></Toggle>
             </View>
           </Section>
 
@@ -331,9 +359,9 @@ export default function App() {
           {/* ── ToggleGroup ── */}
           <Section title="ToggleGroup">
             <ToggleGroup type="single">
-              <ToggleGroupItem value="left"><Text>Left</Text></ToggleGroupItem>
-              <ToggleGroupItem value="center"><Text>Center</Text></ToggleGroupItem>
-              <ToggleGroupItem value="right"><Text>Right</Text></ToggleGroupItem>
+              <ToggleGroupItem value="left"><Text className="text-foreground">Left</Text></ToggleGroupItem>
+              <ToggleGroupItem value="center"><Text className="text-foreground">Center</Text></ToggleGroupItem>
+              <ToggleGroupItem value="right"><Text className="text-foreground">Right</Text></ToggleGroupItem>
             </ToggleGroup>
           </Section>
 
@@ -343,8 +371,8 @@ export default function App() {
           <Section title="Tabs">
             <Tabs defaultValue="account">
               <TabsList>
-                <TabsTrigger value="account"><Text>Account</Text></TabsTrigger>
-                <TabsTrigger value="password"><Text>Password</Text></TabsTrigger>
+                <TabsTrigger value="account">Account</TabsTrigger>
+                <TabsTrigger value="password">Password</TabsTrigger>
               </TabsList>
               <TabsContent value="account">
                 <Text className="text-sm text-foreground">
@@ -365,7 +393,7 @@ export default function App() {
           <Section title="Accordion">
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
-                <AccordionTrigger><Text>Is it accessible?</Text></AccordionTrigger>
+                <AccordionTrigger>Is it accessible?</AccordionTrigger>
                 <AccordionContent>
                   <Text className="text-sm text-foreground">
                     Yes. It adheres to the WAI-ARIA design pattern.
@@ -373,7 +401,7 @@ export default function App() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger><Text>Is it styled?</Text></AccordionTrigger>
+                <AccordionTrigger>Is it styled?</AccordionTrigger>
                 <AccordionContent>
                   <Text className="text-sm text-foreground">
                     Yes. It comes with default styles using Tailwind CSS.
@@ -388,7 +416,7 @@ export default function App() {
           {/* ── Collapsible ── */}
           <Section title="Collapsible">
             <Collapsible>
-              <CollapsibleTrigger><Text>Toggle Content</Text></CollapsibleTrigger>
+              <CollapsibleTrigger><Text className="text-foreground">Toggle Content</Text></CollapsibleTrigger>
               <CollapsibleContent>
                 <Text className="text-sm text-foreground p-2">
                   This content can be toggled.
@@ -472,15 +500,15 @@ export default function App() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink><Text>Home</Text></BreadcrumbLink>
+                  <BreadcrumbLink>Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink><Text>Components</Text></BreadcrumbLink>
+                  <BreadcrumbLink>Components</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage><Text>Breadcrumb</Text></BreadcrumbPage>
+                  <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -501,7 +529,7 @@ export default function App() {
                       isActive={page === currentPage}
                       onPress={() => setCurrentPage(page)}
                     >
-                      <Text>{page}</Text>
+                      <Text className="text-sm font-medium text-foreground">{page}</Text>
                     </PaginationLink>
                   </PaginationItem>
                 ))}
@@ -519,18 +547,18 @@ export default function App() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead><Text>Name</Text></TableHead>
-                  <TableHead><Text>Status</Text></TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 <TableRow>
-                  <TableCell><Text>Alice</Text></TableCell>
-                  <TableCell><Text>Active</Text></TableCell>
+                  <TableCell>Alice</TableCell>
+                  <TableCell>Active</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell><Text>Bob</Text></TableCell>
-                  <TableCell><Text>Inactive</Text></TableCell>
+                  <TableCell>Bob</TableCell>
+                  <TableCell>Inactive</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -705,6 +733,7 @@ export default function App() {
           </Section>
         </ScrollView>
       </SafeAreaView>
+      </View>
     </SafeAreaProvider>
   );
 }

@@ -1,19 +1,6 @@
-/**
- * Native theme system — powered by uniwind.
- *
- * With uniwind, Tailwind classes (including dark: variants and CSS variables)
- * work directly on React Native components via the className prop.
- *
- * Theming is handled the same way as web:
- * - Use Tailwind semantic classes (bg-primary, text-foreground, etc.)
- * - Dark mode via dark: prefix or Tailwind's darkMode config
- * - Custom themes via CSS variables in your global.css
- *
- * This file re-exports theme presets and types for consumers who need
- * to reference token values programmatically (e.g., for charts or animations).
- */
-
-import type { ThemeTokens, ThemePreset } from "./theme.types";
+import { createContext, useContext, useState, useCallback, useEffect, createElement } from "react";
+import { Uniwind } from "uniwind";
+import type { ThemeTokens, ThemePreset, ThemeColors } from "./theme.types";
 import { defaultPreset } from "./presets/default";
 import { darkPreset } from "./presets/dark";
 
@@ -92,6 +79,97 @@ export const themes = {
 
 export function createNativeTheme(preset: ThemePreset): NativeTheme {
   return tokensToNativeTheme(preset.tokens);
+}
+
+// --- Color key to CSS variable name ---
+
+function colorKeyToCssVar(key: string): string {
+  return `--color-${key.replace(/([A-Z])/g, "-$1").toLowerCase()}`;
+}
+
+function colorsToVariables(colors: ThemeColors): Record<string, string> {
+  const vars: Record<string, string> = {};
+  for (const [key, value] of Object.entries(colors)) {
+    vars[colorKeyToCssVar(key)] = value;
+  }
+  return vars;
+}
+
+// --- ThemeProvider (mirrors web API) ---
+
+// Map preset names to uniwind theme names ("light" / "dark")
+const PRESET_TO_UNIWIND: Record<string, string> = {
+  default: "light",
+  dark: "dark",
+};
+
+interface ThemeContextValue {
+  theme: string;
+  setTheme: (name: string) => void;
+  tokens: ThemeTokens;
+}
+
+const ThemeContext = createContext<ThemeContextValue | null>(null);
+
+export function useTheme(): ThemeContextValue {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return ctx;
+}
+
+interface ThemeProviderProps {
+  children: React.ReactNode;
+  defaultTheme?: string;
+  presets?: ThemePreset[];
+}
+
+export function ThemeProvider({
+  children,
+  defaultTheme = "default",
+  presets: customPresets,
+}: ThemeProviderProps) {
+  const presets = customPresets ?? [defaultPreset, darkPreset];
+  const presetMap = new Map(presets.map((p) => [p.name, p]));
+
+  const [themeName, setThemeName] = useState(defaultTheme);
+  const currentPreset = presetMap.get(themeName) ?? presets[0];
+  const tokens = currentPreset.tokens;
+
+  // Initialize both light and dark CSS variables so uniwind has them all
+  useEffect(() => {
+    for (const preset of presets) {
+      const uniwindName = PRESET_TO_UNIWIND[preset.name] ?? "light";
+      Uniwind.updateCSSVariables(uniwindName, colorsToVariables(preset.tokens.colors));
+    }
+  }, [presets]);
+
+  // Switch to the active theme
+  useEffect(() => {
+    const uniwindTheme = PRESET_TO_UNIWIND[themeName] ?? "light";
+    Uniwind.updateCSSVariables(uniwindTheme, colorsToVariables(tokens.colors));
+    Uniwind.setTheme(uniwindTheme);
+  }, [themeName, tokens]);
+
+  const setTheme = useCallback(
+    (name: string) => {
+      if (presetMap.has(name)) {
+        setThemeName(name);
+      } else {
+        console.warn(
+          `Theme "${name}" not found. Available: ${Array.from(presetMap.keys()).join(", ")}`,
+        );
+      }
+    },
+    [presetMap],
+  );
+
+  return createElement(
+    ThemeContext.Provider,
+    { value: { theme: themeName, setTheme, tokens } },
+    children,
+  );
 }
 
 export { defaultPreset, darkPreset };

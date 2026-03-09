@@ -179,7 +179,7 @@ function CarouselPrevious({
       )}
       {...props}
     >
-      {children ?? <Text className="text-base">{"<"}</Text>}
+      {children ?? <Text className="text-base text-foreground">{"<"}</Text>}
     </Pressable>
   );
 }
@@ -201,7 +201,7 @@ function CarouselNext({
       )}
       {...props}
     >
-      {children ?? <Text className="text-base">{">"}</Text>}
+      {children ?? <Text className="text-base text-foreground">{">"}</Text>}
     </Pressable>
   );
 }

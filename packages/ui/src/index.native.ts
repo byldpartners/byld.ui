@@ -2,7 +2,7 @@
 export * from "./components/index.native";
 
 // Theme
-export { themes, createNativeTheme } from "./theme/native";
+export { ThemeProvider, useTheme, themes, createNativeTheme, defaultPreset, darkPreset } from "./theme/native";
 export type {
   ThemePreset,
   ThemeTokens,
