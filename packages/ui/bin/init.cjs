@@ -211,15 +211,17 @@ if (command === "init") {
 
     fs.writeFileSync(
       cssPath,
-      generateWebCss(lightColors, radiusTokens, "./node_modules/@byldpartners/ui/src"),
+      generateWebCss(lightColors, radiusTokens, "./node_modules/@byldpartners/ui/src", ["tw-animate-css"]),
       "utf-8"
     );
     console.log(`✓ Created ${path.relative(cwd, cssPath)}`);
 
     console.log("");
     console.log("Next steps:");
-    console.log("  1. Import './app.css' in your entry file");
-    console.log("  2. Wrap your app with <ThemeProvider> from @byldpartners/ui");
+    console.log("  1. Install tw-animate-css: npm install tw-animate-css");
+    console.log("  2. Add Tailwind CSS as a plugin to your bundler (e.g. @tailwindcss/vite for Vite — see README)");
+    console.log("  3. Import './app.css' in your entry file");
+    console.log("  4. Wrap your app with <ThemeProvider> from @byldpartners/ui");
   }
 } else if (command === "generate-theme") {
   // --- Monorepo theme generation ---

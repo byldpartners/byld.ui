@@ -67,9 +67,41 @@ This reads from `default.ts` and `dark.ts` presets (in `packages/ui/src/theme/pr
 
 The theme system uses semantic color tokens (OKLCH) with presets:
 
-**Web:** `ThemeProvider` injects CSS variables onto `document.documentElement` at runtime.
+**Web setup:**
+
+1. Install dependencies:
+
+```sh
+npm install @byldpartners/ui tw-animate-css
+```
+
+2. Add Tailwind CSS as a plugin to your bundler. If using Vite:
+
+```sh
+npm install -D @tailwindcss/vite
+```
+
+```ts
+// vite.config.ts
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
+```
+
+For other bundlers, see the [Tailwind CSS installation docs](https://tailwindcss.com/docs/installation/framework-guides).
+
+3. Run the init script to generate `app.css`:
+
+```sh
+npx @byldpartners/ui init --platform web
+```
+
+4. Import `app.css` in your entry file and wrap your app with `ThemeProvider`:
 
 ```tsx
+import "./app.css";
 import { ThemeProvider, useTheme } from "@byldpartners/ui/theme";
 
 <ThemeProvider defaultTheme="default">
