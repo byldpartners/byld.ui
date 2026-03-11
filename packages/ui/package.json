@@ -1,6 +1,6 @@
 {
   "name": "@byldpartners/ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Cross-platform UI component library for web and React Native",
   "license": "MIT",
   "publishConfig": {
