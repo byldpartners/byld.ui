@@ -1,0 +1,29 @@
+{
+  "name": "@byldpartners/native",
+  "private": true,
+  "version": "0.0.1",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@byldpartners/ui": "workspace:*",
+    "expo": "~55.0.0",
+    "expo-glass-effect": "~55.0.7",
+    "expo-status-bar": "~55.0.0",
+    "lucide-react-native": "^0.577.0",
+    "react": "~19.2.3",
+    "react-native": "~0.83.2",
+    "react-native-safe-area-context": "^5.0.0",
+    "react-native-svg": "^15.15.3",
+    "tailwindcss": "^4.0.0",
+    "uniwind": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

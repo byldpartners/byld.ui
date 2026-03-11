@@ -1,0 +1,11 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@byldpartners/ui": ["../../packages/ui/src/index.native.ts"],
+      "@byldpartners/ui/*": ["../../packages/ui/src/*"]
+    }
+  },
+  "include": ["src", "uniwind-types.d.ts", "../../packages/ui/src/**/*.native.tsx", "../../packages/ui/src/**/*.native.ts", "../../packages/ui/src/**/*.types.ts", "../../packages/ui/src/uniwind.d.ts", "../../packages/ui/src/theme/tokens.ts"]
+}

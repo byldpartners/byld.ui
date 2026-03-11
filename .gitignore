@@ -1,0 +1,14 @@
+node_modules
+dist
+.turbo
+*.tsbuildinfo
+.DS_Store
+.env
+.env.local
+
+# Storybook
+storybook-static
+debug-storybook.log
+
+# Expo
+.expo

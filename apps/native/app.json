@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "byld-ui-native",
+    "slug": "byld-ui-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "byld-ui-native",
+    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "com.byldpartners.ui.native"
+    },
+    "android": {
+      "package": "com.byldpartners.ui.native"
+    }
+  }
+}

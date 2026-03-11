@@ -1,0 +1,25 @@
+{
+  "name": "byld-ui",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "check-types": "turbo check-types",
+    "test": "turbo test",
+    "clean": "turbo clean",
+    "new-component": "tsx scripts/new-component.ts",
+    "generate-theme": "tsx scripts/generate-theme-css.ts"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@types/node": "^25.4.0",
+    "tsx": "^4.19.0",
+    "turbo": "^2.8.15",
+    "typescript": "^5.7.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

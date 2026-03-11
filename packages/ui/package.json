@@ -1,0 +1,109 @@
+{
+  "name": "@byldpartners/ui",
+  "version": "0.0.1",
+  "description": "Cross-platform UI component library for web and React Native",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "react-native": "./src/index.native.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./theme": {
+      "react-native": "./src/theme/native.ts",
+      "types": "./dist/theme/web.d.ts",
+      "import": "./dist/theme/web.js"
+    },
+    "./src/*": "./src/*"
+  },
+  "react-native": "./src/index.native.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit && tsc --noEmit -p tsconfig.native.json",
+    "clean": "rm -rf dist",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-alert-dialog": "^1.1.0",
+    "@radix-ui/react-aspect-ratio": "^1.1.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-checkbox": "^1.1.0",
+    "@radix-ui/react-collapsible": "^1.1.0",
+    "@radix-ui/react-context-menu": "^2.2.0",
+    "@radix-ui/react-dialog": "^1.1.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.0",
+    "@radix-ui/react-hover-card": "^1.1.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-menubar": "^1.1.0",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-popover": "^1.1.0",
+    "@radix-ui/react-progress": "^1.1.0",
+    "@radix-ui/react-radio-group": "^1.2.0",
+    "@radix-ui/react-scroll-area": "^1.2.0",
+    "@radix-ui/react-select": "^2.1.0",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slider": "^1.2.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-toggle": "^1.1.0",
+    "@radix-ui/react-toggle-group": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "react-resizable-panels": "^4.7.2",
+    "tailwind-merge": "^3.0.0",
+    "vaul": "^1.1.2"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.2.17",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "jsdom": "^28.0.0",
+    "lucide-react-native": "^0.577.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-native-svg": "^15.15.3",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.0.0"
+  },
+  "peerDependencies": {
+    "lucide-react-native": ">=0.300",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "react-native": ">=0.81",
+    "react-native-svg": ">=13.0",
+    "uniwind": ">=1.0",
+    "expo-glass-effect": ">=0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
+    },
+    "lucide-react-native": {
+      "optional": true
+    },
+    "uniwind": {
+      "optional": true
+    },
+    "expo-glass-effect": {
+      "optional": true
+    }
+  }
+}
