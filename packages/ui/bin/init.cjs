@@ -179,6 +179,7 @@ if (command === "init") {
   if (platform === "native") {
     const cssPath = path.join(cwd, "global.css");
     const metroPath = path.join(cwd, "metro.config.js");
+    const uniwindTypesPath = path.join(cwd, "uniwind-types.d.ts");
 
     fs.writeFileSync(
       cssPath,
@@ -195,6 +196,11 @@ if (command === "init") {
       fs.writeFileSync(metroPath, generateMetroConfig(), "utf-8");
       console.log(`✓ Created ${path.relative(cwd, metroPath)}`);
     }
+
+    // Copy uniwind type augmentation so className is recognized on RN components
+    const uniwindDtsSource = path.join(__dirname, "..", "src", "uniwind.d.ts");
+    fs.copyFileSync(uniwindDtsSource, uniwindTypesPath);
+    console.log(`✓ Created ${path.relative(cwd, uniwindTypesPath)}`);
 
     console.log("");
     console.log("Next steps:");

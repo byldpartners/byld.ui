@@ -81,6 +81,7 @@ npx byldpartners-ui init --platform native
 This generates:
 - `global.css` — Tailwind/uniwind imports, `@source` directive, and light/dark theme token variants
 - `metro.config.js` — Expo Metro config wrapped with `withUniwindConfig`
+- `uniwind-types.d.ts` — Type augmentation that adds `className` to React Native components
 
 **2. Import CSS and wrap with `ThemeProvider` in your `App.tsx`:**
 
