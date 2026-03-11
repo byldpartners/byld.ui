@@ -4,7 +4,7 @@
 @source "../../../packages/ui/src";
 
 @theme {
-  /* Colors — generated from packages/ui/src/theme/presets/ */
+  /* Colors */
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.145 0 0);
   --color-card: oklch(1 0 0);
@@ -33,10 +33,6 @@
   --radius-full: 9999px;
 }
 
-/*
- * Override Tailwind's default border-color (currentColor) so bare
- * border utilities like border-b use the theme's --color-border token.
- */
 @layer base {
   *, *::before, *::after {
     border-color: var(--color-border);

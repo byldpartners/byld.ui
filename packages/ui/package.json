@@ -27,9 +27,13 @@
     "./src/*": "./src/*"
   },
   "react-native": "./src/index.native.ts",
+  "bin": {
+    "byldpartners-ui": "./bin/init.cjs"
+  },
   "files": [
     "dist",
-    "src"
+    "src",
+    "bin"
   ],
   "scripts": {
     "build": "tsup",

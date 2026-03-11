@@ -3,7 +3,7 @@
 
 @source "../../packages/ui/src";
 
-/* Theme tokens — generated from packages/ui/src/theme/presets/ */
+/* Theme tokens — light */
 
 @variant light {
   --color-background: oklch(1 0 0);
@@ -26,6 +26,8 @@
   --color-input: oklch(0.922 0 0);
   --color-ring: oklch(0.708 0 0);
 }
+
+/* Theme tokens — dark */
 
 @variant dark {
   --color-background: oklch(0.145 0 0);

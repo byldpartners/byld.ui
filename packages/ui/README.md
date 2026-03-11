@@ -17,13 +17,13 @@ pnpm add @byldpartners/ui
 **Web:**
 
 ```bash
-pnpm add react react-dom
+npm install react react-dom tailwindcss
 ```
 
-**React Native:**
+**React Native (Expo):**
 
 ```bash
-pnpm add react react-native react-native-svg lucide-react-native uniwind
+npm install react react-native react-native-svg lucide-react-native uniwind tailwindcss expo-glass-effect
 ```
 
 | Package | Version | Required | Platform |
@@ -34,15 +34,28 @@ pnpm add react react-native react-native-svg lucide-react-native uniwind
 | `react-native-svg` | `>=13.0` | Yes | Native |
 | `lucide-react-native` | `>=0.300` | Yes | Native |
 | `uniwind` | `>=1.0` | Yes | Native |
+| `tailwindcss` | `>=4.0` | Yes | Both |
 | `expo-glass-effect` | `>=0.1.0` | No | Native |
+
+> **Note:** `tailwindcss` is required as a direct dependency in your project because `global.css` uses `@import "tailwindcss"` which Metro needs to resolve at build time.
 
 ## Quick Start
 
 ### Web
 
-Wrap your app in `ThemeProvider` and import components:
+**1. Install dependencies and generate config files:**
+
+```bash
+npm install @byldpartners/ui react react-dom tailwindcss
+npx byldpartners-ui init --platform web
+```
+
+This generates `app.css` with Tailwind imports, a `@source` directive pointing to the component library, and all theme color tokens.
+
+**2. Import CSS and wrap with `ThemeProvider`:**
 
 ```tsx
+import './app.css';
 import { ThemeProvider, Button } from "@byldpartners/ui";
 
 function App() {
@@ -56,46 +69,37 @@ function App() {
 }
 ```
 
-The `ThemeProvider` injects CSS custom properties onto `document.documentElement`. Make sure you have Tailwind CSS configured in your project.
+### React Native (Expo)
 
-### React Native
+**1. Install dependencies and generate config files:**
 
-Components use Tailwind classes via [uniwind](https://uniwind.dev). Set up your project:
-
-**1. Create `global.css`** at your project root:
-
-```css
-@import 'tailwindcss';
-@import 'uniwind';
+```bash
+npm install @byldpartners/ui react-native-svg lucide-react-native uniwind tailwindcss expo-glass-effect
+npx byldpartners-ui init --platform native
 ```
 
-**2. Configure Metro** in `metro.config.js`:
+This generates:
+- `global.css` — Tailwind/uniwind imports, `@source` directive, and light/dark theme token variants
+- `metro.config.js` — Expo Metro config wrapped with `withUniwindConfig`
 
-```js
-const { getDefaultConfig } = require('expo/metro-config');
-const { withUniwindConfig } = require('uniwind/metro');
-
-const config = getDefaultConfig(__dirname);
-
-module.exports = withUniwindConfig(config, {
-  cssEntryFile: './global.css',
-});
-```
-
-**3. Import CSS** in your `App.tsx`:
+**2. Import CSS and wrap with `ThemeProvider` in your `App.tsx`:**
 
 ```tsx
 import './global.css';
-import { Button } from "@byldpartners/ui";
+import { ThemeProvider, Button } from "@byldpartners/ui";
 
 export default function App() {
   return (
-    <Button variant="default" onPress={() => console.log("pressed")}>
-      Get Started
-    </Button>
+    <ThemeProvider defaultTheme="default">
+      <Button variant="default" onPress={() => console.log("pressed")}>
+        Get Started
+      </Button>
+    </ThemeProvider>
   );
 }
 ```
+
+> **Important:** The `ThemeProvider` is required on both platforms — it initializes the theme context and syncs color tokens at runtime. Without it, `useTheme` calls inside components will throw.
 
 Both platforms use the same Tailwind semantic classes (`bg-primary`, `text-foreground`, `rounded-md`, etc.) — web via Tailwind CSS, native via uniwind.
 
@@ -153,13 +157,25 @@ function ThemeSwitcher() {
 }
 ```
 
-### Native — Tailwind dark mode
+### Native — ThemeProvider + Tailwind dark mode
 
-On native, theming works through Tailwind's built-in dark mode via uniwind. Components use semantic classes like `bg-primary` and `text-foreground` which automatically respond to your Tailwind theme configuration.
+On native, wrap your app in `ThemeProvider` (same as web). Theming works through Tailwind's built-in dark mode via uniwind. Components use semantic classes like `bg-primary` and `text-foreground` which automatically respond to the `@variant light` / `@variant dark` blocks in your `global.css`.
+
+```tsx
+import { ThemeProvider } from "@byldpartners/ui";
+
+export default function App() {
+  return (
+    <ThemeProvider defaultTheme="default">
+      {/* your app */}
+    </ThemeProvider>
+  );
+}
+```
 
 ### Custom themes
 
-Define a custom preset and pass it to the web provider:
+Define a custom preset and pass it to the provider:
 
 ```tsx
 import { ThemeProvider } from "@byldpartners/ui";

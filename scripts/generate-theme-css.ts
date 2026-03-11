@@ -1,102 +1,32 @@
 /**
  * Generates theme CSS files for web and native from the canonical preset definitions.
  *
- * Single source of truth: packages/ui/src/theme/presets/*.ts
+ * Delegates to packages/ui/bin/init.cjs (single source of truth for CSS generation).
  *
  * Usage: pnpm generate-theme
  */
 
-import { writeFileSync } from "fs";
+import { execSync } from "child_process";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { defaultPreset } from "../packages/ui/src/theme/presets/default";
-import { darkPreset } from "../packages/ui/src/theme/presets/dark";
-import { baseTokens } from "../packages/ui/src/theme/tokens";
-import type { ThemeColors } from "../packages/ui/src/theme/theme.types";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
+const bin = join(root, "packages", "ui", "bin", "init.cjs");
+const src = join(root, "packages", "ui", "src");
 
-// --- Helpers ---
+const webPath = join(root, "apps", "web", "src", "app.css");
+const nativePath = join(root, "apps", "native", "global.css");
 
-function colorKeyToCssVar(key: string): string {
-  return `--color-${key.replace(/([A-Z])/g, "-$1").toLowerCase()}`;
-}
-
-function colorsToLines(colors: ThemeColors, indent: string): string {
-  return (Object.entries(colors) as [string, string][])
-    .map(([key, value]) => `${indent}${colorKeyToCssVar(key)}: ${value};`)
-    .join("\n");
-}
-
-// --- Generate web CSS (apps/web/src/app.css) ---
-
-function generateWebCss(): string {
-  const lines = [
-    "@import \"tailwindcss\";",
-    "@import \"tw-animate-css\";",
-    "",
-    "@source \"../../../packages/ui/src\";",
-    "",
-    "@theme {",
-    "  /* Colors — generated from packages/ui/src/theme/presets/ */",
-    colorsToLines(defaultPreset.tokens.colors, "  "),
-    "",
-    "  /* Radius */",
-    ...Object.entries(baseTokens.radius).map(
-      ([key, value]) => `  --radius-${key}: ${value};`,
-    ),
-    "}",
-    "",
-    "/*",
-    " * Override Tailwind's default border-color (currentColor) so bare",
-    " * border utilities like border-b use the theme's --color-border token.",
-    " */",
-    "@layer base {",
-    "  *, *::before, *::after {",
-    "    border-color: var(--color-border);",
-    "  }",
-    "}",
-    "",
-  ];
-
-  return lines.join("\n");
-}
-
-// --- Generate native CSS (apps/native/global.css) ---
-
-function generateNativeCss(): string {
-  const lines = [
-    "@import \"tailwindcss\";",
-    "@import \"uniwind\";",
-    "",
-    "@source \"../../packages/ui/src\";",
-    "",
-    "/* Theme tokens — generated from packages/ui/src/theme/presets/ */",
-    "",
-    "@variant light {",
-    colorsToLines(defaultPreset.tokens.colors, "  "),
-    "}",
-    "",
-    "@variant dark {",
-    colorsToLines(darkPreset.tokens.colors, "  "),
-    "}",
-    "",
-  ];
-
-  return lines.join("\n");
-}
-
-// --- Write files ---
-
-const webCss = generateWebCss();
-const nativeCss = generateNativeCss();
-
-const webPath = join(root, "apps/web/src/app.css");
-const nativePath = join(root, "apps/native/global.css");
-
-writeFileSync(webPath, webCss, "utf-8");
-writeFileSync(nativePath, nativeCss, "utf-8");
-
-console.log(`✓ Generated ${webPath}`);
-console.log(`✓ Generated ${nativePath}`);
+execSync(
+  [
+    `node "${bin}" generate-theme`,
+    `--source "${src}"`,
+    `--out-web "${webPath}"`,
+    `--web-source "../../../packages/ui/src"`,
+    `--web-imports "tw-animate-css"`,
+    `--out-native "${nativePath}"`,
+    `--native-source "../../packages/ui/src"`,
+  ].join(" "),
+  { stdio: "inherit" },
+);
