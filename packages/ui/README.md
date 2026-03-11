@@ -34,6 +34,7 @@ pnpm add react react-native react-native-svg lucide-react-native uniwind
 | `react-native-svg` | `>=13.0` | Yes | Native |
 | `lucide-react-native` | `>=0.300` | Yes | Native |
 | `uniwind` | `>=1.0` | Yes | Native |
+| `expo-glass-effect` | `>=0.1.0` | No | Native |
 
 ## Quick Start
 
@@ -100,13 +101,13 @@ Both platforms use the same Tailwind semantic classes (`bg-primary`, `text-foreg
 
 ## Components
 
-49 components with full web (shadcn/Radix) and React Native (uniwind) implementations:
+50 components with full web (shadcn/Radix) and React Native (uniwind) implementations:
 
 | Phase | Components |
 |-------|-----------|
 | **Foundation** | Accordion, Alert, AlertDialog, AspectRatio, Avatar, Badge, Breadcrumb, Button |
 | **Form & Input** | Calendar, Checkbox, Collapsible, Combobox, Command, DatePicker, Form, Input, InputOTP, Label, RadioGroup, Select, Slider, Switch, Textarea, Toggle, ToggleGroup |
-| **Layout & Display** | Card, Carousel, Chart, DataTable, HoverCard, ResizablePanel, Separator, Skeleton, Table, Tabs |
+| **Layout & Display** | Card, Carousel, Chart, DataTable, HoverCard, Icon, ResizablePanel, Separator, Skeleton, Table, Tabs |
 | **Overlay & Feedback** | ContextMenu, Dialog, Drawer, DropdownMenu, Menubar, NavigationMenu, Popover, Sheet, Sidebar, Toast, Tooltip |
 | **Misc** | Pagination, Progress, ScrollArea |
 
@@ -115,6 +116,7 @@ Every component follows the same file structure:
 ```
 ComponentName/
 ├── ComponentName.types.ts      # Shared props interface
+├── useComponentName.ts         # Shared state hook (platform-agnostic)
 ├── ComponentName.web.tsx       # Web implementation (Radix + Tailwind)
 ├── ComponentName.native.tsx    # React Native implementation (uniwind)
 ├── index.ts                    # Web barrel
@@ -125,7 +127,7 @@ ComponentName/
 
 ### Web — ThemeProvider
 
-Two presets ship out of the box: `default` (light) and `dark`.
+Three presets ship out of the box: `default` (light), `dark`, and `aurora`.
 
 ```tsx
 import { ThemeProvider } from "@byldpartners/ui";
@@ -162,7 +164,7 @@ Define a custom preset and pass it to the web provider:
 ```tsx
 import { ThemeProvider } from "@byldpartners/ui";
 import type { ThemePreset } from "@byldpartners/ui";
-import { defaultPreset, darkPreset } from "@byldpartners/ui/theme";
+import { defaultPreset, darkPreset, auroraPreset } from "@byldpartners/ui/theme";
 
 const brand: ThemePreset = {
   name: "brand",
