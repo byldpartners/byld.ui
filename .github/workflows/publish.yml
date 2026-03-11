@@ -45,7 +45,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           cd packages/ui
-          npm version ${{ github.event.inputs.version }} -m "chore: bump version to %s [skip ci]"
+          npm version ${{ github.event.inputs.version }}
+          git add .
+          git commit -m "chore: bump version to ${{ github.event.inputs.version }} [skip ci]"
           git push origin HEAD:main --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
