@@ -3,7 +3,14 @@
   "version": "0.0.1",
   "description": "Cross-platform UI component library for web and React Native",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/byldpartners/byld.ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byldpartners/byld.ui.git"
+  },
   "type": "module",
   "exports": {
     ".": {
