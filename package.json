@@ -1,6 +1,5 @@
 {
   "name": "@byldpartners/ui",
-  "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
