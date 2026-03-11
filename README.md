@@ -247,7 +247,8 @@ Button, Card (more coming in future updates).
 
 ## CI/CD
 
-- **GitHub Actions:** `ci.yml` runs on PRs (build, lint, type-check, test). `release.yml` publishes via changesets.
+- **GitHub Actions:** `ci.yml` runs on PRs (build, lint, type-check, test).
+- **Releases:** Done manually — bump the version in `package.json` and run `npm publish`.
 - **Dependabot:** Weekly grouped dependency updates.
 
 ## Components

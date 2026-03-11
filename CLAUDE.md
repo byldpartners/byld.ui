@@ -150,6 +150,5 @@ Theme tokens are defined as presets in `packages/ui/src/theme/presets/` using OK
 
 ## Versioning & Releases
 
-- **Changesets** for version management. Access is `restricted` (private npm).
 - CI runs on PRs (`ci.yml`): build → check-types → lint → test.
-- Release on push to main (`release.yml`): changesets creates release PRs or publishes to npm.
+- Releases are done **manually** — bump the version in `package.json` and publish to npm with `npm publish`.
