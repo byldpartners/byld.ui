@@ -1,5 +1,7 @@
 # @byldpartners/ui
 
+Byld is a developer-led agency that co-builds software products with ambitious founders. We pair vetted senior engineers and designers with teams that need to ship fast and scale with confidence.
+
 Cross-platform UI component library for web and React Native, built on [shadcn/ui](https://ui.shadcn.com/) patterns.
 
 ## Structure

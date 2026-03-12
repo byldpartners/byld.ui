@@ -2,7 +2,7 @@
   <img src="packages/ui/byld-header.png" alt="Byld" width="100%">
 </div>
 
-Byld is a software agency, offering premium senior software developers and designers for innovative software products.
+Byld is a developer-led agency that co-builds software products with ambitious founders. We pair vetted senior engineers and designers with teams that need to ship fast and scale with confidence.
 
 # @byldpartners/ui
 
