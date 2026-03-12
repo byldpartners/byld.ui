@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../../assets/images/byld-header.png" alt="Byld" width="100%">
+  <img src="byld-header.png" alt="Byld" width="100%">
 </div>
 
 Byld is a software agency, offering premium senior software developers and designers for innovative software products.
