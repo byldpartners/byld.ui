@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="../../assets/images/byld-header.png" alt="Byld" width="100%">
+</div>
+
+Byld is a software agency, offering premium senior software developers and designers for innovative software products.
+
 # @byldpartners/ui
 
 Cross-platform UI component library for **web** (React + Radix + Tailwind) and **React Native** (Expo + uniwind).
@@ -299,3 +305,11 @@ pnpm --filter @byldpartners/ui check-types
 ## License
 
 MIT
+
+## Support
+
+For support, visit [https://byld.dev](https://byld.dev) or open an issue on GitHub.
+
+---
+
+**Built with ❤️ by [Byld](https://byld.dev)**
