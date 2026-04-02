@@ -14,10 +14,8 @@
     "outDir": "dist",
     "rootDir": "src",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
