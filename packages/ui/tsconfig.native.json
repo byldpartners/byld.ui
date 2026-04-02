@@ -10,9 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "lib": ["ES2022"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "src/**/*.native.ts",

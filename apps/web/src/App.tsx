@@ -799,7 +799,7 @@ function Showcase() {
         {/* Drawer */}
         <Section title="Drawer">
           <Drawer>
-            <DrawerTrigger>
+            <DrawerTrigger asChild>
               <Button variant="outline">Open Drawer</Button>
             </DrawerTrigger>
             <DrawerContent>
